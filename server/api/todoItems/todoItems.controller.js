@@ -1,0 +1,139 @@
+'use strict';
+
+var _ = require('lodash');
+var TodoItems = require('./todoItems.model');
+
+// Get list of todoItemss
+exports.index = function(req, res) {
+  TodoItems.find(function (err, todoItemss) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, todoItemss);
+  });
+};
+
+// Get a single todoItems
+exports.show = function(req, res) {
+  TodoItems.findById(req.params.id, function (err, todoItems) {
+    if(err) { return handleError(res, err); }
+    if(!todoItems) { return res.send(404); }
+    return res.json(todoItems);
+  });
+};
+
+// Creates a new todoItems in the DB.
+exports.create = function (req, res) {
+  TodoItems.create(req.body, function(err, todoItems) {
+    if(err) { return handleError(res, err); }
+    return res.json(201, todoItems);
+  });
+};
+
+// Updates an existing todoItems in the DB.
+exports.update = function(req, res) {
+  if(req.body._id) { delete req.body._id; }
+  TodoItems.findById(req.params.id, function (err, todoItems) {
+    if (err) { return handleError(res, err); }
+    if(!todoItems) { return res.send(404); }
+    var updated = _.merge(todoItems, req.body);
+    updated.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, todoItems);
+    });
+  });
+};
+
+// Deletes a todoItems from the DB.
+exports.destroy = function(req, res) {
+  TodoItems.findById(req.params.id, function (err, todoItems) {
+    if(err) { return handleError(res, err); }
+    if(!todoItems) { return res.send(404); }
+    todoItems.remove(function(err) {
+      if(err) { return handleError(res, err); }
+      return res.send(204);
+    });
+  });
+};
+
+exports.gettodos = function(req, res) {
+  var currTime = new Date();
+  currTime.setSeconds(0,0);
+  var pas = currTime;
+  pas.setMinutes(currTime.getMinutes() - 40);
+  //console.log('err hhhhhhhhhhhnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',currTime,'ppppppppppp',pas)
+  TodoItems.find({
+      time: {
+          $lte: currTime,
+          //$gte: pas
+      }
+  })
+  .exec(function (err, todo) {
+      if(err) { return handleError(res, err); }
+      //console.log(todo,'todo serveeeeeeeeeee');
+      return res.json(200, todo);
+    })
+};
+
+exports.updateStatus = function(req, res) {
+  console.log('inside update function')
+TodoItems.findById(req.params.id)
+.exec( function(err,todoItems){
+  if(err){return handleError(res, err);}
+ console.log('DDDDDDDDDDDDD')
+ if(req.params.opt==0)
+   todoItems.active = false
+ if(req.params.opt==1 && req.params.ppcnt==todoItems.postponeCount)
+    {
+     todoItems.time =  _.min([new Date(todoItems.time),new Date()])
+     todoItems.time.setDate(todoItems.time.getDate() + 10);
+     console.log('date',todoItems)
+    }
+   /*todoItems.save(function (err) {
+      if (err) { return handleError(res, err); }
+      console.log('after errrrrrrrrrrrrrrrrrr')
+      return res.json(200, todoItems);
+    });*/
+
+   TodoItems.findById(req.params.id, function (err, todo) {
+    if (err) { return handleError(res, err); } 
+    if(!todo) { return res.send(404); }
+    var updated = _.merge(todo, todoItems);
+    console.log('todo is',todo,'todoitemm s ',todoItems,'updated ',updated)
+    updated.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, todo);
+    });
+  });
+
+})
+  
+};
+
+
+function handleError(res, err) {
+  return res.send(500, err);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
