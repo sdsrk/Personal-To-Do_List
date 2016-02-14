@@ -26,7 +26,7 @@ module.exports = function(app) {
 );
   
  
-var cronJob = cron.job('*/30 * * * * *', function(){
+var cronJob = cron.job('*/1 * * * *', function(){
 
   var url;
 
@@ -45,7 +45,7 @@ var cronJob = cron.job('*/30 * * * * *', function(){
         var mailOptions = {
           from: 'todoapp51@gmail.com', // sender address
           to: receiver, // list of receivers
-          subject: 'Upcoming event in next 15 mins', // Subject line 
+          subject: x[i].todo+' event in next 15 mins', // Subject line 
           html: "<label>Click on link to close event: "+url1+"</label><br/><label>Click on line to postpone event :"+url2+"</label>" // html body 
       };
         transporter.sendMail(mailOptions, function(error, response) {
@@ -61,7 +61,7 @@ var cronJob = cron.job('*/30 * * * * *', function(){
    
     console.info('cron job completed in routes');
 }); 
- cronJob.start(); 
+ //cronJob.start(); 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
    .get(errors[404]);

@@ -62,9 +62,9 @@ exports.gettodos = function(req, res) {
   pas.setMinutes(currTime.getMinutes() + 1);
   TodoItems.find({
       time: {
-          //$gte: currTime,
-          //$lte: pas
-          $lt : new Date()
+          $gte: currTime,
+          $lte: pas
+          //$lte : new Date()
       }
   })
   .exec(function (err, todo) {
