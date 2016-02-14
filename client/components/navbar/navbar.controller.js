@@ -5,10 +5,6 @@ angular.module('toDoApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/todoitem'
-    },
-    {
-      'title': 'To Do',
-      'link': '/todoitem'
     }];
 
     $scope.isCollapsed = true;

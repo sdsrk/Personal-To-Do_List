@@ -8,7 +8,8 @@ angular.module('toDoApp')
     $scope.authenticate = function(){
       $window.location.href = '/auth/google'
     }
-
+    if(Auth.isLoggedIn())
+      $location.path('/todoitem')
     $scope.login = function(form) {
       $scope.submitted = true;
 
@@ -20,7 +21,7 @@ angular.module('toDoApp')
         .then( function() {
           // Logged in, redirect to home
           $rootScope.username = $scope.user.email
-          $location.path('/');
+          $location.path('/todoitem');
         })
         .catch( function(err) {
           $scope.errors.other = err.message;
