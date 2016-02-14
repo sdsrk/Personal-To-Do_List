@@ -1,7 +1,8 @@
 # Personal-To-Do_List
 clone to local directory
 #Then run following cmd's
-$npm install
+$npm install,
+
 $bower install
 
 grunt serve
