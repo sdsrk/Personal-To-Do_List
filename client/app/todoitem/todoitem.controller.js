@@ -1,10 +1,15 @@
 'use strict';
 
 angular.module('toDoApp')
+<<<<<<< HEAD
     .controller('TodoitemCtrl', function ($scope,todoService,$rootScope,Auth,$location,$state,$window,$http) {
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.model={}
     var _user = Auth.getCurrentUser();
+=======
+    .controller('TodoitemCtrl', function ($scope,todoService,$rootScope,Auth,$location) {
+    $scope.isLoggedIn = Auth.isLoggedIn;
+>>>>>>> 4d659d1b0a6388d6e0375e673949a2afd3c99549
 
     if(Object.keys(Auth.getCurrentUser()).length == 0){
          $location.path('/login');
@@ -33,16 +38,24 @@ angular.module('toDoApp')
         $scope.open = true;
     };
     $scope.submit = function(){
+<<<<<<< HEAD
         if($scope.model.location.formatted_address)
     	   $scope.model.location=$scope.model.location.formatted_address;
     	$scope.model.active = true;
         $scope.model.userEmail = _user.email
     	todoService.add($scope.model).then(function(data){
             $state.go($state.current, {}, {reload: true});
+=======
+    	$scope.model.location=$scope.model.location.formatted_address;
+    	$scope.model.active = true;
+    	todoService.add($scope.model).then(function(data){
+    		console.log(data,'data is here');
+>>>>>>> 4d659d1b0a6388d6e0375e673949a2afd3c99549
     	})
     }
     $scope.getList = function(){
     	todoService.get().then(function(data){
+<<<<<<< HEAD
             $scope.todos = data
     	})
     }
@@ -97,3 +110,18 @@ angular.module('toDoApp')
 
 
    
+=======
+    		//console.log('list data',data);
+            $scope.todos = data
+            //console.log(Auth.getCurrentUser(),'useeeeeeeee');
+    	})
+    }
+    $scope.getList();
+    $scope.update = function(ind){
+        var currentValue = new Date($scope.todos[ind].time+'');
+         currentValue.setDate(currentValue.getDate() + 1);
+         $scope.todos[ind].time = currentValue
+         todoService.update($scope.todos[ind])
+    }
+    });
+>>>>>>> 4d659d1b0a6388d6e0375e673949a2afd3c99549

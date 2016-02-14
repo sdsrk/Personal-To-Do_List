@@ -22,6 +22,7 @@ module.exports = function(app) {
   var smtpTransport = require('nodemailer-smtp-transport');
 
   var transporter = nodemailer.createTransport(
+<<<<<<< HEAD
     smtpTransport('smtps://todoapp51%40gmail.com:9935106755@smtp.gmail.com')
 );
   
@@ -62,6 +63,40 @@ var cronJob = cron.job('*/30 * * * * *', function(){
     console.info('cron job completed in routes');
 }); 
  cronJob.start(); 
+=======
+    smtpTransport('smtps://mail.job0%40gmail.com:08181sc020@smtp.gmail.com')
+);
+
+
+
+
+var cronJob = cron.job('*/30 * * * * *', function(){
+   
+    request('http://localhost:9000/api/todoItemss/notify', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+        console.log(body) 
+     }
+     var x = body[0]._id
+     console.log('notify gggggggggggg',response.body) 
+     
+        /*  transporter.sendMail({
+    from: 'mail.job0@gmail.com',
+    to: 'shardul315@gmail.com',
+    subject: 'Event in next 15 Mins!',
+    text: 'localhost:9000/api/todoItemss/update/body[0]._id'+x,
+    //html:"<a href=''>localhost:9000/api/todoItemss/update/"+body[0]._id+"/0/1</a>"
+}, function(error, response) {
+   if (error) {
+        console.log(error);
+   } else {
+        console.log('Message sent');
+   }
+});*/
+})
+    console.info('cron job completed in routes');
+}); 
+ //cronJob.start(); 
+>>>>>>> 4d659d1b0a6388d6e0375e673949a2afd3c99549
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
    .get(errors[404]);
