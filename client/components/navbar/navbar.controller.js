@@ -4,7 +4,7 @@ angular.module('toDoApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
       'title': 'Home',
-      'link': '/'
+      'link': '/todoitem'
     },
     {
       'title': 'To Do',
