@@ -57,18 +57,18 @@ exports.destroy = function(req, res) {
 exports.gettodos = function(req, res) {
   var currTime = new Date();
   currTime.setSeconds(0,0);
-  var pas = currTime;
-  pas.setMinutes(currTime.getMinutes() - 40);
-  //console.log('err hhhhhhhhhhhnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',currTime,'ppppppppppp',pas)
+  var pas = new Date(currTime);
+  currTime.setMinutes(pas.getMinutes() + 15);
+  pas.setMinutes(currTime.getMinutes() + 1);
   TodoItems.find({
       time: {
-          $lte: currTime,
-          //$gte: pas
+          $gte: currTime,
+          $lte: pas
+          //$lt : currTime
       }
   })
   .exec(function (err, todo) {
       if(err) { return handleError(res, err); }
-      //console.log(todo,'todo serveeeeeeeeeee');
       return res.json(200, todo);
     })
 };
@@ -78,32 +78,20 @@ exports.updateStatus = function(req, res) {
 TodoItems.findById(req.params.id)
 .exec( function(err,todoItems){
   if(err){return handleError(res, err);}
- console.log('DDDDDDDDDDDDD')
  if(req.params.opt==0)
    todoItems.active = false
  if(req.params.opt==1 && req.params.ppcnt==todoItems.postponeCount)
     {
-     todoItems.time =  _.min([new Date(todoItems.time),new Date()])
-     todoItems.time.setDate(todoItems.time.getDate() + 10);
-     console.log('date',todoItems)
+     var diff =  _.min([new Date(todoItems.time),new Date()])
+     diff = diff.setDate(diff.getDate() + 1);
+     todoItems.time = diff
+     todoItems.postponeCount = todoItems.postponeCount +1
     }
-   /*todoItems.save(function (err) {
+   todoItems.save(function (err) {
+     var comp = "updated successfully"
       if (err) { return handleError(res, err); }
-      console.log('after errrrrrrrrrrrrrrrrrr')
-      return res.json(200, todoItems);
-    });*/
-
-   TodoItems.findById(req.params.id, function (err, todo) {
-    if (err) { return handleError(res, err); } 
-    if(!todo) { return res.send(404); }
-    var updated = _.merge(todo, todoItems);
-    console.log('todo is',todo,'todoitemm s ',todoItems,'updated ',updated)
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.json(200, todo);
+      return res.json(200,comp);
     });
-  });
-
 })
   
 };

@@ -41,8 +41,8 @@ var all = {
     }
   },
   google: {
-    clientID:     "299609740192-uefijm20jv4lvpgcllkijrlk69ap2dsn.apps.googleusercontent.com"  ,
-    clientSecret:  "6u_jo58A41FRDqeLhoOTHDAs" ,
+    clientID:     "177085260127-viq2qum7am03d5qn5pgst53a44dv6l0b.apps.googleusercontent.com"  ,
+    clientSecret:  "1SzR0QUZXHDphk6Un3Su8bNw" ,
     callbackURL:  'http://localhost:9000/auth/google/callback'
   }
 

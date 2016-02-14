@@ -4,6 +4,7 @@ angular.module('toDoApp')
     .controller('TodoitemCtrl', function ($scope,todoService,$rootScope,Auth,$location,$state,$window,$http) {
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.model={}
+    var _user = Auth.getCurrentUser();
 
     if(Object.keys(Auth.getCurrentUser()).length == 0){
          $location.path('/login');
@@ -35,6 +36,7 @@ angular.module('toDoApp')
         if($scope.model.location.formatted_address)
     	   $scope.model.location=$scope.model.location.formatted_address;
     	$scope.model.active = true;
+        $scope.model.userEmail = _user.email
     	todoService.add($scope.model).then(function(data){
             $state.go($state.current, {}, {reload: true});
     	})
