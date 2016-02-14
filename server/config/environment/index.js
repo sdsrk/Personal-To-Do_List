@@ -44,6 +44,11 @@ var all = {
     clientID:     "177085260127-viq2qum7am03d5qn5pgst53a44dv6l0b.apps.googleusercontent.com"  ,
     clientSecret:  "1SzR0QUZXHDphk6Un3Su8bNw" ,
     callbackURL:  'http://localhost:9000/auth/google/callback'
+  },
+  facebook: {
+    clientID:     process.env.FACEBOOK_ID || '1031539046868617',
+    clientSecret: process.env.FACEBOOK_SECRET || '8a417e422775cbb9171829cad9f789ae',
+    callbackURL:  (process.env.DOMAIN || '') + '/auth/facebook/callback'
   }
 
 };

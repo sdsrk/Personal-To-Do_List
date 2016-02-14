@@ -4,6 +4,7 @@ var GoogleTokenStrategy = require('passport-google-token').Strategy;
 
 exports.setup = function (User, config) {
   function fetchUser(accessToken, refreshToken, profile, done) {
+    console.log('profilllllllll',profile);
     User.findOne({
           'email': profile.emails[0].value.toLowerCase()
         }, function(err, user) {
