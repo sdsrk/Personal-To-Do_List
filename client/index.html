@@ -15,9 +15,9 @@
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+      <link rel="stylesheet" href="bower_components/angular-google-places-autocomplete/src/autocomplete.css" />
       <link rel="stylesheet" href="bower_components/angular-google-places-autocomplete/dist/autocomplete.min.css" />
       <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
-
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -29,8 +29,6 @@
       <link rel="stylesheet" href="app/main/main.css">
       <link rel="stylesheet" href="app/todoitem/todoitem.css">
       <link rel="stylesheet" href="components/modal/modal.css">
-      <link rel="stylesheet" href="/bower_components/angular-google-places-autocomplete/src/autocomplete.css">
-      <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
       <!-- endinjector -->
     <!-- endbuild -->
   </head>
@@ -76,8 +74,6 @@
       <script src="bower_components/angular-google-places-autocomplete/src/autocomplete.js"></script>
       <script src="bower_components/angular-google-places-autocomplete/dist/autocomplete.min.js"></script>
       <script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
-      <script src='bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js'></script>
-      <script src='bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.min.js'></script>
       <!-- endbower -->
     <!-- endbuild -->
 
@@ -100,7 +96,6 @@
           <script src="components/modal/modal.service.js"></script>
           <script src="components/mongoose-error/mongoose-error.directive.js"></script>
           <script src="components/navbar/navbar.controller.js"></script>
-          
           <!-- endinjector -->
         <!-- endbuild -->
         <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>

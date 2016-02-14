@@ -4,6 +4,7 @@ angular.module('toDoApp')
     .controller('TodoitemCtrl', function($scope, todoService, $rootScope, Auth, $location, $state, $window, $http) {
         $scope.isLoggedIn = Auth.isLoggedIn;
         $scope.model = {}
+        var address
         var _user = Auth.getCurrentUser();
 
         if (Object.keys(Auth.getCurrentUser()).length == 0) {
@@ -79,7 +80,7 @@ angular.module('toDoApp')
                 request.onreadystatechange = function() {
                     if (request.readyState == 4 && request.status == 200) {
                         var data = JSON.parse(request.responseText);
-                        var address = data.results[0];
+                        address = data.results[0];
                         console.log('addressssss', address.formatted_address);
 
                         $scope.model.location = address.formatted_address
@@ -95,9 +96,6 @@ angular.module('toDoApp')
             });
         }
         $scope.doTest1()
-
-
-
         $scope.getList();
         $scope.update = function(ind,opt) {
             if(opt = 's'){
@@ -109,5 +107,9 @@ angular.module('toDoApp')
                 $scope.todos[ind].active = false
             }
             todoService.update($scope.todos[ind])
+        }
+
+        $scope.setCurrentLoc = function(){
+           $scope.model.location =  address
         }
     });
