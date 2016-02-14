@@ -57,32 +57,18 @@ exports.destroy = function(req, res) {
 exports.gettodos = function(req, res) {
   var currTime = new Date();
   currTime.setSeconds(0,0);
-<<<<<<< HEAD
   var pas = new Date(currTime);
   currTime.setMinutes(pas.getMinutes() + 15);
   pas.setMinutes(currTime.getMinutes() + 1);
   TodoItems.find({
       time: {
-          $gte: currTime,
-          $lte: pas
-          //$lt : currTime
-=======
-  var pas = currTime;
-  pas.setMinutes(currTime.getMinutes() - 40);
-  //console.log('err hhhhhhhhhhhnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',currTime,'ppppppppppp',pas)
-  TodoItems.find({
-      time: {
-          $lte: currTime,
-          //$gte: pas
->>>>>>> 4d659d1b0a6388d6e0375e673949a2afd3c99549
+          //$gte: currTime,
+          //$lte: pas
+          $lt : new Date()
       }
   })
   .exec(function (err, todo) {
       if(err) { return handleError(res, err); }
-<<<<<<< HEAD
-=======
-      //console.log(todo,'todo serveeeeeeeeeee');
->>>>>>> 4d659d1b0a6388d6e0375e673949a2afd3c99549
       return res.json(200, todo);
     })
 };
@@ -92,15 +78,10 @@ exports.updateStatus = function(req, res) {
 TodoItems.findById(req.params.id)
 .exec( function(err,todoItems){
   if(err){return handleError(res, err);}
-<<<<<<< HEAD
-=======
- console.log('DDDDDDDDDDDDD')
->>>>>>> 4d659d1b0a6388d6e0375e673949a2afd3c99549
  if(req.params.opt==0)
    todoItems.active = false
  if(req.params.opt==1 && req.params.ppcnt==todoItems.postponeCount)
     {
-<<<<<<< HEAD
      var diff =  _.min([new Date(todoItems.time),new Date()])
      diff = diff.setDate(diff.getDate() + 1);
      todoItems.time = diff
@@ -111,29 +92,6 @@ TodoItems.findById(req.params.id)
       if (err) { return handleError(res, err); }
       return res.json(200,comp);
     });
-=======
-     todoItems.time =  _.min([new Date(todoItems.time),new Date()])
-     todoItems.time.setDate(todoItems.time.getDate() + 10);
-     console.log('date',todoItems)
-    }
-   /*todoItems.save(function (err) {
-      if (err) { return handleError(res, err); }
-      console.log('after errrrrrrrrrrrrrrrrrr')
-      return res.json(200, todoItems);
-    });*/
-
-   TodoItems.findById(req.params.id, function (err, todo) {
-    if (err) { return handleError(res, err); } 
-    if(!todo) { return res.send(404); }
-    var updated = _.merge(todo, todoItems);
-    console.log('todo is',todo,'todoitemm s ',todoItems,'updated ',updated)
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.json(200, todo);
-    });
-  });
-
->>>>>>> 4d659d1b0a6388d6e0375e673949a2afd3c99549
 })
   
 };

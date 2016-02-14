@@ -95,11 +95,7 @@ function setTokenCookie(req, res) {
   if (!req.user) return res.json(404, { message: 'Something went wrong, please try again.'});
   var token = signToken(req.user._id, req.user.role);
   res.cookie('token', JSON.stringify(token));
-<<<<<<< HEAD
   res.redirect('/todoitem');
-=======
-  res.redirect('/exams');
->>>>>>> 4d659d1b0a6388d6e0375e673949a2afd3c99549
 }
 
 function returnToken(req, res) {

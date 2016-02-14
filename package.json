@@ -25,7 +25,6 @@
     "nodemailer": "^2.1.0",
     "nodemailer-smtp-transport": "^2.0.1",
     "passport": "~0.2.0",
-<<<<<<< HEAD
     "passport-facebook": "latest",
     "passport-google-oauth": "latest",
     "passport-google-token": "latest",
@@ -34,12 +33,11 @@
     "passport-oauth2": "^1.2.0",
     "passport-twitter": "~1.0.2",
     "request": "^2.69.0",
-    "serve-favicon": "~2.0.1"
-=======
-    "passport-local": "~0.1.6",
+    "serve-favicon": "~2.0.1",
+    "passport-local" : "~0.1.6",
     "passport-oauth2": "^1.2.0",
     "request": "^2.69.0",
-    "serve-favicon": "~2.0.1",
+    "serve-favicon": "~2.0.1", 
     "passport": "~0.2.0",
     "passport-local": "~1.0.0",
     "passport-facebook": "~1.0.2",
@@ -48,7 +46,6 @@
     "passport-google-oauth": "latest",
     "passport-google-token": "latest",
     "passport-facebook": "latest"
->>>>>>> 4d659d1b0a6388d6e0375e673949a2afd3c99549
   },
   "devDependencies": {
     "grunt": "~0.4.4",
