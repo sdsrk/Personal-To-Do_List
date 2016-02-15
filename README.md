@@ -1,13 +1,14 @@
 # Personal-To-Do_List
 clone to local directory
-git clone https://github.com/sdsrk/Personal-To-Do_List.git
 
-cd Personal-To-Do_List
+1.git clone https://github.com/sdsrk/Personal-To-Do_List.git
+
+2.cd Personal-To-Do_List
 #Then run following cmd's
-$npm install,
+3.$npm install,
 
-$bower install
+4.$bower install
 
-grunt serve
+5.grunt serve
 
 make sure mongodb is running 
